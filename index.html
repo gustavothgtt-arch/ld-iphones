@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LD iPhones | iPhones & Acessórios Apple</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+
+            <a href="index.html" class="marca">
+                <img src="imagens/logo-ld.png" alt="LD iPhones">
+                <div class="marca-texto">
+                    <strong>LD iPhones</strong>
+                    <span>iPhones & Acessórios Apple</span>
+                </div>
+            </a>
+
+            <div class="busca">
+                <input type="text" id="campoBusca" placeholder="Buscar iPhone, modelo, armazenamento...">
+                <button type="button" id="botaoBusca" aria-label="Buscar">🔍</button>
+            </div>
+
+            <nav class="menu">
+                <a href="#produtos">Loja</a>
+
+                <button class="btn-carrinho" type="button" data-abrir-carrinho>
+                    🛒
+                    <span class="texto-carrinho">Carrinho</span>
+                    <span id="quantidadeCarrinho">0</span>
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="hero-conteudo">
+
+                <div class="hero-texto">
+                    <span class="hero-tag">LD IPHONES • RJ</span>
+
+                    <h1>
+                        Seu próximo iPhone
+                        <span>está aqui.</span>
+                    </h1>
+
+                    <p>
+                        iPhones lacrados e seminovos selecionados,
+                        com garantia, segurança e condições especiais.
+                    </p>
+
+                    <div class="hero-botoes">
+                        <a href="#produtos" class="btn-principal">Ver iPhones</a>
+                        <a href="#beneficios" class="btn-secundario">Conheça a LD</a>
+                    </div>
+                </div>
+
+                <div class="hero-destaque" id="heroDestaque"></div>
+
+            </div>
+        </section>
+
+        <section class="beneficios" id="beneficios">
+
+            <div class="beneficio">
+                <span>✓</span>
+                <div>
+                    <strong>Garantia</strong>
+                    <p>Segurança na sua compra</p>
+                </div>
+            </div>
+
+            <div class="beneficio">
+                <span>🚚</span>
+                <div>
+                    <strong>Entrega no RJ</strong>
+                    <p>Consulte disponibilidade</p>
+                </div>
+            </div>
+
+            <div class="beneficio">
+                <span>💳</span>
+                <div>
+                    <strong>Parcelamento</strong>
+                    <p>Consulte pelo WhatsApp</p>
+                </div>
+            </div>
+
+            <div class="beneficio">
+                <span>🔒</span>
+                <div>
+                    <strong>Compra segura</strong>
+                    <p>Atendimento especializado</p>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="secao-produtos" id="produtos">
+
+            <div class="titulo-secao">
+                <div>
+                    <span class="subtitulo">CATÁLOGO</span>
+                    <h2>Encontre seu iPhone</h2>
+                    <p id="resultadoBusca" class="resultado-busca"></p>
+                </div>
+
+                <select id="ordenacao">
+                    <option value="padrao">Ordenar por</option>
+                    <option value="menor">Menor preço</option>
+                    <option value="maior">Maior preço</option>
+                </select>
+            </div>
+
+            <div class="filtros">
+                <button class="filtro ativo" data-filtro="todos">Todos</button>
+                <button class="filtro" data-filtro="lacrado">Lacrados</button>
+                <button class="filtro" data-filtro="seminovo">Seminovos</button>
+                <button class="filtro" data-filtro="acessorios">Acessórios</button>
+            </div>
+
+            <div class="grid-produtos" id="listaProdutos"></div>
+
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+
+            <div class="rodape-marca">
+                <img src="imagens/logo-ld.png" alt="LD iPhones">
+                <div>
+                    <strong>LD iPhones</strong>
+                    <p>iPhones & Acessórios Apple</p>
+                </div>
+            </div>
+
+            <p class="copyright">
+                © 2026 LD iPhones. Todos os direitos reservados.
+            </p>
+
+        </div>
+    </footer>
+
+    <div class="carrinho-overlay" id="carrinhoOverlay"></div>
+
+    <aside class="carrinho-painel" id="carrinhoPainel" aria-hidden="true">
+        <div class="carrinho-cabecalho">
+            <div>
+                <span>SEU CARRINHO</span>
+                <h2>Minha compra</h2>
+            </div>
+
+            <button type="button" class="carrinho-fechar" id="fecharCarrinho" aria-label="Fechar carrinho">×</button>
+        </div>
+
+        <div class="carrinho-lista" id="carrinhoLista"></div>
+
+        <div class="carrinho-resumo" id="carrinhoResumo">
+            <div>
+                <span>Subtotal</span>
+                <strong id="carrinhoSubtotal">R$ 0,00</strong>
+            </div>
+
+            <p>Frete e forma de pagamento serão definidos na finalização.</p>
+
+            <button type="button" class="btn-finalizar-carrinho" id="finalizarCarrinho">
+                Continuar compra
+            </button>
+
+            <button type="button" class="btn-continuar-comprando" id="continuarComprando">
+                Continuar comprando
+            </button>
+        </div>
+    </aside>
+
+    <script src="produtos.js"></script>
+    <script src="carrinho.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto | LD iPhones</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+
+            <a href="index.html" class="marca">
+                <img src="imagens/logo-ld.png" alt="LD iPhones">
+
+                <div class="marca-texto">
+                    <strong>LD iPhones</strong>
+                    <span>iPhones & Acessórios Apple</span>
+                </div>
+            </a>
+
+            <div class="busca busca-produto">
+                <input type="text" placeholder="Buscar iPhone, modelo, armazenamento..." disabled>
+                <button type="button" aria-label="Buscar">🔍</button>
+            </div>
+
+            <nav class="menu">
+                <a href="index.html#produtos">Loja</a>
+
+                <button class="btn-carrinho" type="button" data-abrir-carrinho>
+                    🛒
+                    <span class="texto-carrinho">Carrinho</span>
+                    <span id="quantidadeCarrinho">0</span>
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="pagina-produto">
+
+        <div class="produto-voltar-topo">
+            <a href="index.html#produtos">← Voltar para a loja</a>
+        </div>
+
+        <nav class="produto-breadcrumb" aria-label="Navegação">
+            <a href="index.html">Início</a>
+            <span>›</span>
+            <a href="index.html#produtos">Loja</a>
+            <span>›</span>
+            <strong id="breadcrumbProduto">Produto</strong>
+        </nav>
+
+        <section id="detalheProduto" class="produto-detalhe">
+            <div class="carregando-produto">
+                Carregando produto...
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+
+            <div class="rodape-marca">
+                <img src="imagens/logo-ld.png" alt="LD iPhones">
+
+                <div>
+                    <strong>LD iPhones</strong>
+                    <p>iPhones & Acessórios Apple</p>
+                </div>
+            </div>
+
+            <p class="copyright">
+                © 2026 LD iPhones. Todos os direitos reservados.
+            </p>
+
+        </div>
+    </footer>
+
+    <div class="carrinho-overlay" id="carrinhoOverlay"></div>
+
+    <aside class="carrinho-painel" id="carrinhoPainel" aria-hidden="true">
+        <div class="carrinho-cabecalho">
+            <div>
+                <span>SEU CARRINHO</span>
+                <h2>Minha compra</h2>
+            </div>
+
+            <button type="button" class="carrinho-fechar" id="fecharCarrinho" aria-label="Fechar carrinho">×</button>
+        </div>
+
+        <div class="carrinho-lista" id="carrinhoLista"></div>
+
+        <div class="carrinho-resumo" id="carrinhoResumo">
+            <div>
+                <span>Subtotal</span>
+                <strong id="carrinhoSubtotal">R$ 0,00</strong>
+            </div>
+
+            <p>Frete e forma de pagamento serão definidos na finalização.</p>
+
+            <button type="button" class="btn-finalizar-carrinho" id="finalizarCarrinho">
+                Continuar compra
+            </button>
+
+            <button type="button" class="btn-continuar-comprando" id="continuarComprando">
+                Continuar comprando
+            </button>
+        </div>
+    </aside>
+
+    <script src="produtos.js"></script>
+    <script src="carrinho.js"></script>
+    <script src="produto.js"></script>
+
+</body>
+</html>
