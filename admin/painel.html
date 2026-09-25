@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>LD iPhones | Painel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <aside id="sidebar" class="sidebar">
+        <div class="side-brand">
+            <img src="../imagens/logo-ld.png" alt="LD iPhones">
+            <div><b>LD iPhones</b><small>Administração</small></div>
+            <button id="fecharMenu" type="button">×</button>
+        </div>
+        <nav>
+            <button class="nav ativo" data-page="dashboard">⌂ Dashboard</button>
+            <button class="nav" data-page="produtos">▣ Produtos</button>
+            <button class="nav" data-page="pedidos">▤ Pedidos</button>
+            <button class="nav" data-page="divulgacao">◉ Divulgação</button>
+            <button class="nav" data-page="acessos">♙ Acessos</button>
+        </nav>
+        <div class="side-bottom">
+            <a href="../index.html">↗ Ver loja</a>
+            <button id="btnSair" type="button">↪ Sair</button>
+        </div>
+    </aside>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="main">
+        <header>
+            <div>
+                <button id="abrirMenu" class="hamb" type="button">☰</button>
+                <div>
+                    <small>PAINEL ADMINISTRATIVO</small>
+                    <h1 id="titulo">Dashboard</h1>
+                </div>
+            </div>
+            <a href="../index.html">Ver loja ↗</a>
+        </header>
+
+        <section id="dashboard" class="page ativa">
+            <div class="welcome">
+                <div>
+                    <span>VISÃO GERAL</span>
+                    <h2 id="saudacao">Bom dia! 👋</h2>
+                    <p>Acompanhe os principais números e atalhos da LD iPhones.</p>
+                </div>
+                <button class="btn-primary" id="btnNovoProdutoDashboard" type="button">+ Novo produto</button>
+            </div>
+
+            <div class="dashboard-resumo">
+                <div class="dashboard-bloco">
+                    <div class="dashboard-bloco-titulo">
+                        <div>
+                            <span>OPERAÇÃO</span>
+                            <h3>Pedidos</h3>
+                        </div>
+                        <small>Clique em um indicador para visualizar os pedidos</small>
+                    </div>
+
+                    <div class="stats stats-pedidos">
+                        <button class="stat-card stat-card-clicavel" type="button" data-dashboard-filtro="novo">
+                            <i>🛒</i>
+                            <div>
+                                <small>Novos</small>
+                                <b id="statPedidosNovos">—</b>
+                                <span id="statPedidosNovosTexto">Carregando...</span>
+                            </div>
+                        </button>
+
+                        <button class="stat-card stat-card-clicavel" type="button" data-dashboard-filtro="andamento">
+                            <i>📦</i>
+                            <div>
+                                <small>Em andamento</small>
+                                <b id="statEmAndamento">—</b>
+                                <span id="statEmAndamentoTexto">Carregando...</span>
+                            </div>
+                        </button>
+
+                        <button class="stat-card stat-card-clicavel" type="button" data-dashboard-filtro="concluido">
+                            <i>✓</i>
+                            <div>
+                                <small>Concluídos</small>
+                                <b id="statConcluidos">—</b>
+                                <span id="statConcluidosTexto">Carregando...</span>
+                            </div>
+                        </button>
+
+                        <button class="stat-card stat-card-clicavel" type="button" data-dashboard-filtro="cancelado">
+                            <i>×</i>
+                            <div>
+                                <small>Cancelados</small>
+                                <b id="statCancelados">—</b>
+                                <span id="statCanceladosTexto">Carregando...</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-linha-secundaria">
+                    <div class="dashboard-bloco dashboard-bloco-financeiro">
+                        <div class="dashboard-bloco-titulo">
+                            <div>
+                                <span>FINANCEIRO</span>
+                                <h3>Valores dos pedidos</h3>
+                            </div>
+                        </div>
+
+                        <div class="stats stats-financeiro">
+                            <article class="stat-card stat-card-valor">
+                                <i>R$</i>
+                                <div>
+                                    <small>Pedidos ativos</small>
+                                    <b id="statValorAtivos">—</b>
+                                    <span id="statValorAtivosTexto">Carregando...</span>
+                                </div>
+                            </article>
+
+                            <button class="stat-card stat-card-clicavel stat-card-valor" type="button" data-dashboard-filtro="concluido">
+                                <i>R$</i>
+                                <div>
+                                    <small>Valor concluído</small>
+                                    <b id="statValorConcluido">—</b>
+                                    <span id="statValorConcluidoTexto">Carregando...</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-bloco dashboard-bloco-produtos">
+                        <div class="dashboard-bloco-titulo">
+                            <div>
+                                <span>CATÁLOGO</span>
+                                <h3>Produtos</h3>
+                            </div>
+                        </div>
+
+                        <div class="stats stats-produtos-dashboard">
+                            <article class="stat-card">
+                                <i>📱</i>
+                                <div>
+                                    <small>Produtos disponíveis</small>
+                                    <b id="statProdutos">—</b>
+                                    <span id="statProdutosTexto">Carregando...</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <article class="box">
+                    <span>ACESSO RÁPIDO</span>
+                    <h3>Gerencie sua loja</h3>
+                    <div class="quick">
+                        <button id="atalhoNovoProduto" type="button"><b>+ Produto</b><small>Cadastrar aparelho</small></button>
+                        <button data-go="pedidos"><b>Pedidos</b><small>Ver solicitações</small></button>
+                        <button data-go="divulgacao"><b>Divulgação</b><small>Criar artes</small></button>
+                        <button data-go="acessos"><b>Acessos</b><small>Gerenciar logins</small></button>
+                    </div>
+                </article>
+                <article class="box">
+                    <span>PROJETO</span>
+                    <h3>Próximos passos</h3>
+                    <p>✓ Estrutura da loja pronta</p>
+                    <p>✓ Pedidos e estoque conectados ao Supabase</p>
+                    <p>✓ Produtos e fotos conectados ao painel</p>
+                    <p>✓ Controle seguro de reserva e baixa de estoque</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="produtos" class="page">
+            <div class="page-head produtos-head">
+                <div>
+                    <span>CATÁLOGO</span>
+                    <h2>Produtos</h2>
+                    <p>Cadastre, edite e controle os aparelhos da loja.</p>
+                </div>
+                <button id="btnNovoProduto" class="btn-primary" type="button">+ Novo produto</button>
+            </div>
+
+            <div class="produtos-filtros">
+                <div class="pedidos-busca">
+                    <span>⌕</span>
+                    <input id="buscaProdutos" type="search" placeholder="Buscar por código, modelo, cor ou armazenamento...">
+                </div>
+                <select id="filtroProdutos">
+                    <option value="todos">Todos os produtos</option>
+                    <option value="disponiveis">Disponíveis</option>
+                    <option value="indisponiveis">Indisponíveis</option>
+                    <option value="destaques">Em destaque</option>
+                </select>
+                <button id="btnAtualizarProdutos" class="btn-secondary" type="button">↻ Atualizar</button>
+            </div>
+
+            <div id="produtosMensagem" class="pedidos-mensagem">Carregando produtos...</div>
+            <div id="listaProdutos" class="produtos-lista"></div>
+        </section>
+
+        <section id="pedidos" class="page">
+            <div class="page-head pedidos-head">
+                <div><span>VENDAS</span><h2>Pedidos</h2><p>Acompanhe as solicitações recebidas e atualize cada etapa.</p></div>
+                <button id="btnAtualizarPedidos" class="btn-secondary" type="button">↻ Atualizar</button>
+            </div>
+            <div class="pedidos-filtros">
+                <div class="pedidos-busca"><span>⌕</span><input id="buscaPedidos" type="search" placeholder="Buscar por pedido, cliente, telefone ou produto..."></div>
+                <select id="filtroStatusPedidos">
+                    <option value="todos">Todos os status</option><option value="andamento">Em andamento</option><option value="novo">Novo</option><option value="em_contato">Em contato</option>
+                    <option value="confirmado">Confirmado</option><option value="em_entrega">Em entrega</option><option value="concluido">Concluído</option><option value="cancelado">Cancelado</option>
+                </select>
+            </div>
+            <div id="pedidosMensagem" class="pedidos-mensagem">Carregando pedidos...</div>
+            <div id="listaPedidos" class="pedidos-lista"></div>
+        </section>
+
+        <section id="divulgacao" class="page">
+            <div class="page-head divulgacao-head">
+                <div>
+                    <span>MARKETING</span>
+                    <h2>Divulgação</h2>
+                    <p>Gere uma arte pronta da LD iPhones usando os produtos cadastrados.</p>
+                </div>
+                <button id="btnAtualizarDivulgacao" class="btn-secondary" type="button">↻ Atualizar produtos</button>
+            </div>
+
+            <div class="divulgacao-layout divulgacao-layout-arte">
+                <article class="box divulgacao-config">
+                    <span>GERADOR DE ARTE</span>
+                    <h3>Personalizar divulgação</h3>
+
+                    <div class="divulgacao-form">
+                        <label>
+                            <span>Produto</span>
+                            <select id="divulgacaoProduto">
+                                <option value="">Selecione um produto</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Formato da arte</span>
+                            <select id="divulgacaoFormato">
+                                <option value="feed">Feed — 1080 × 1350</option>
+                                <option value="story">Story / Status — 1080 × 1920</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Chamada opcional</span>
+                            <input id="divulgacaoChamada" maxlength="55" placeholder="Ex.: OFERTA ESPECIAL">
+                        </label>
+
+                        <label class="divulgacao-check">
+                            <input id="divulgacaoMostrarParcelamento" type="checkbox" checked>
+                            <span>
+                                <b>Mostrar parcelamento</b>
+                                <small>Usa a quantidade de parcelas cadastrada no produto.</small>
+                            </span>
+                        </label>
+
+                        <button id="btnGerarDivulgacao" class="btn-primary" type="button">Gerar arte</button>
+                        <button id="btnBaixarDivulgacao" class="btn-secondary" type="button" disabled>↓ Baixar arte em PNG</button>
+                    </div>
+
+                    <div id="divulgacaoMensagem" class="divulgacao-mensagem"></div>
+                </article>
+
+                <article class="box divulgacao-preview-box divulgacao-preview-arte">
+                    <div class="divulgacao-preview-topo">
+                        <div>
+                            <span>PRÉVIA</span>
+                            <h3>Arte da LD iPhones</h3>
+                        </div>
+                        <small>A prévia é reduzida. O arquivo será exportado em alta resolução.</small>
+                    </div>
+
+                    <div class="arte-palco">
+                        <div id="arteDivulgacao" class="arte-divulgacao formato-feed arte-ref-premium">
+                            <div class="ref-luz ref-luz-1"></div>
+                            <div class="ref-luz ref-luz-2"></div>
+
+                            <header class="ref-header">
+                                <div class="ref-brand">
+                                    <img src="../imagens/logo-ld.png" alt="LD iPhones" class="ref-logo">
+                                    <div>
+                                        <strong>LD iPhones</strong>
+                                        <span>iPhones &amp; Acessórios Apple</span>
+                                    </div>
+                                </div>
+
+                                <div class="ref-original">
+                                    <span class="ref-apple">●</span>
+                                    <div>
+                                        <small>PRODUTOS</small>
+                                        <b>APPLE</b>
+                                    </div>
+                                </div>
+                            </header>
+
+                            <div class="ref-accent"></div>
+
+                            <main class="ref-main">
+                                <section class="ref-product">
+                                    <div class="ref-offer" id="arteChamada">OFERTA ESPECIAL</div>
+
+                                    <div class="ref-photo-stage">
+                                        <div class="ref-photo-halo"></div>
+                                        <div class="arte-sem-foto" id="arteSemFoto">📱</div>
+                                        <img id="arteFotoProduto" alt="Produto LD iPhones" crossorigin="anonymous">
+                                    </div>
+
+                                    <div class="ref-condition" id="arteCondicao">LACRADO</div>
+                                </section>
+
+                                <section class="ref-copy">
+                                    <div class="ref-meta">
+                                        <span>APPLE</span>
+                                        <span id="arteCodigo">LD-000</span>
+                                    </div>
+
+                                    <h2 id="arteNome">Selecione um iPhone</h2>
+                                    <p class="arte-detalhes" id="arteDetalhes">Armazenamento • Cor • Condição</p>
+
+                                    <div class="ref-features">
+                                        <div><i>✓</i><span>Produto selecionado e revisado</span></div>
+                                        <div><i>✓</i><span>Garantia da loja</span></div>
+                                        <div><i>✓</i><span>Entrega no Rio de Janeiro</span></div>
+                                    </div>
+
+                                    <div class="ref-price-area">
+                                        <div class="arte-preco">
+                                            <span>À VISTA</span>
+                                            <strong id="artePreco">R$ 0,00</strong>
+                                        </div>
+
+                                        <div class="arte-parcelamento" id="arteParcelamento">
+                                            <span>OU EM ATÉ <b id="arteParcelasQtd">12X</b> NO CARTÃO</span>
+                                            <strong id="arteValorParcela">R$ 0,00</strong>
+                                            <small>por parcela</small>
+                                        </div>
+                                    </div>
+                                </section>
+                            </main>
+
+                            <section class="ref-slogan">
+                                <span>SEU PRÓXIMO IPHONE</span>
+                                <strong>COMEÇA AQUI.</strong>
+                            </section>
+
+                            <section class="ref-services">
+                                <div><b>✓</b><span>COMPRA<br>SEGURA</span></div>
+                                <div><b>⌖</b><span>ENTREGA<br>NO RJ</span></div>
+                                <div><b>12x</b><span>PARCELE<br>EM ATÉ 12X</span></div>
+                            </section>
+
+                            <section class="ref-cta">
+                                <div>
+                                    <span>QUER ESSE IPHONE?</span>
+                                    <strong>FALE COM A LD IPHONES</strong>
+                                </div>
+                                <b>›</b>
+                            </section>
+
+                            <footer class="ref-footer">
+                                <strong>@ldiphonesrj</strong>
+                                <span>Rio de Janeiro • RJ</span>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="acessos" class="page">
+            <div class="page-head">
+                <div>
+                    <span>SISTEMA</span>
+                    <h2>Acessos</h2>
+                    <p>Cadastre novos logins para acesso ao painel administrativo.</p>
+                </div>
+                <button id="btnAtualizarAcessos" class="btn-secondary" type="button">↻ Atualizar</button>
+            </div>
+
+            <div class="dash-grid">
+                <article class="box">
+                    <span>NOVO ACESSO</span>
+                    <h3>Cadastrar usuário</h3>
+
+                    <form id="formNovoAcesso" class="produto-form">
+                        <div class="produto-form-grid">
+                            <label>
+                                <span>Nome *</span>
+                                <input id="acessoNome" type="text" required maxlength="80" placeholder="Nome do usuário">
+                            </label>
+
+                            <label>
+                                <span>E-mail *</span>
+                                <input id="acessoEmail" type="email" required autocomplete="off" placeholder="usuario@email.com">
+                            </label>
+
+                            <label>
+                                <span>Senha *</span>
+                                <input id="acessoSenha" type="password" required minlength="6" autocomplete="new-password" placeholder="Mínimo de 6 caracteres">
+                            </label>
+
+                            <label>
+                                <span>Confirmar senha *</span>
+                                <input id="acessoConfirmarSenha" type="password" required minlength="6" autocomplete="new-password" placeholder="Digite a senha novamente">
+                            </label>
+                        </div>
+
+                        <div id="acessosMensagem" class="produto-form-mensagem"></div>
+
+                        <div class="produto-form-acoes">
+                            <button id="btnCriarAcesso" class="btn-primary" type="submit">Criar acesso</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="box">
+                    <span>USUÁRIOS</span>
+                    <h3>Logins cadastrados</h3>
+                    <div id="listaAcessos" class="pedidos-lista"></div>
+                    <div id="acessosListaMensagem" class="pedidos-mensagem visivel">Carregando usuários...</div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <div id="modalProduto" class="pedido-modal" aria-hidden="true">
+        <div class="pedido-modal-overlay" data-fechar-produto></div>
+        <div class="pedido-modal-card produto-modal-card">
+            <button id="fecharModalProduto" class="pedido-modal-fechar" type="button">×</button>
+            <div class="modal-pedido-cabecalho">
+                <span>CATÁLOGO</span><h2 id="tituloModalProduto">Novo produto</h2>
+                <p>Preencha os dados do aparelho e adicione as fotos que serão exibidas na loja.</p>
+            </div>
+            <form id="formProduto" class="produto-form">
+                <input id="produtoId" type="hidden">
+                <div class="produto-form-grid">
+                    <label><span>Código *</span><input id="produtoCodigo" required readonly placeholder="Gerado automaticamente"><small class="campo-ajuda">Gerado automaticamente em sequência.</small></label>
+                    <label class="campo-largo"><span>Nome / Modelo *</span><input id="produtoNome" required placeholder="Ex.: iPhone 16 Pro Max"></label>
+                    <label><span>Categoria *</span><select id="produtoCategoria"><option value="iphone">iPhone</option><option value="acessorio">Acessório</option></select></label>
+                    <label><span>Condição *</span><select id="produtoCondicao"><option value="lacrado">Lacrado</option><option value="seminovo">Seminovo</option></select></label>
+                    <label id="campoEstoqueProduto"><span>Quantidade em estoque *</span><input id="produtoEstoque" type="number" min="0" step="1" value="0" placeholder="Ex.: 5"><small class="campo-ajuda">Para lacrados, informe quantas unidades físicas existem.</small></label>
+                    <label><span>Armazenamento</span><input id="produtoArmazenamento" placeholder="Ex.: 256 GB"></label>
+                    <label><span>Cor</span><input id="produtoCor" placeholder="Ex.: Preto"></label>
+                    <label><span>Preço à vista *</span><input id="produtoPreco" type="number" min="0" step="0.01" required placeholder="0,00"></label>
+                    <label><span>Tipo de destaque</span><select id="produtoTipoDestaque"><option value="nenhum" selected>Nenhum</option><option value="destaque">Destaque</option><option value="lancamento">Lançamento</option><option value="promocao">Promoção</option></select></label>
+                </div>
+
+                <div id="camposSeminovo" class="seminovo-box" hidden>
+                    <div class="seminovo-titulo">
+                        <div>
+                            <span>CONDIÇÃO DO APARELHO</span>
+                            <h3>Detalhes do seminovo</h3>
+                            <p>Preencha as condições reais do aparelho que serão usadas no cadastro.</p>
+                        </div>
+                    </div>
+
+                    <div class="produto-form-grid seminovo-grid">
+                        <label>
+                            <span>Saúde da bateria (%) *</span>
+                            <input id="produtoSaudeBateria" type="number" min="1" max="100" step="1" placeholder="Ex.: 89">
+                        </label>
+
+                        <label>
+                            <span>Estado estético *</span>
+                            <select id="produtoEstadoEstetico">
+                                <option value="">Selecione</option>
+                                <option value="impecavel">Impecável</option>
+                                <option value="excelente">Excelente</option>
+                                <option value="bom">Bom</option>
+                                <option value="marcas_de_uso">Com marcas de uso</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Tela *</span>
+                            <select id="produtoTela">
+                                <option value="">Selecione</option>
+                                <option value="original">Original</option>
+                                <option value="substituida">Substituída</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Peças *</span>
+                            <select id="produtoPecas">
+                                <option value="">Selecione</option>
+                                <option value="todas_originais">Todas originais</option>
+                                <option value="possui_substituicao">Possui peça substituída</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Face ID *</span>
+                            <select id="produtoFaceId">
+                                <option value="">Selecione</option>
+                                <option value="funcionando">Funcionando</option>
+                                <option value="nao_funcionando">Não funcionando</option>
+                                <option value="nao_possui">Não possui</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Câmeras *</span>
+                            <select id="produtoCameras">
+                                <option value="">Selecione</option>
+                                <option value="funcionando">Funcionando perfeitamente</option>
+                                <option value="possui_observacao">Possui observação</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>Acompanha caixa</span>
+                            <select id="produtoCaixa">
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            <span>IMEI (controle interno)</span>
+                            <input id="produtoImei" inputmode="numeric" maxlength="15" placeholder="Não será exibido na loja">
+                        </label>
+
+                        <label class="seminovo-observacoes">
+                            <span>Observações sobre o aparelho</span>
+                            <textarea id="produtoObservacoesSeminovo" rows="4" placeholder="Ex.: pequena marca na lateral, câmera com observação, peça substituída..."></textarea>
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="produto-fotos-box">
+                    <div class="produto-fotos-cabecalho">
+                        <div>
+                            <span>FOTOS DO PRODUTO</span>
+                            <h3>Imagens do aparelho</h3>
+                            <p id="produtoFotosAjuda">Para aparelho lacrado, selecione uma foto principal.</p>
+                        </div>
+
+                        <label class="btn-selecionar-fotos" for="produtoFotosInput">
+                            + Selecionar foto
+                        </label>
+                    </div>
+
+                    <input id="produtoFotosInput" class="produto-fotos-input" type="file" accept="image/jpeg,image/png,image/webp">
+
+                    <div id="produtoFotosVazio" class="produto-fotos-vazio">
+                        <div>▧</div>
+                        <strong>Nenhuma foto selecionada</strong>
+                        <span>JPG, PNG ou WEBP</span>
+                    </div>
+
+                    <div id="produtoFotosPreview" class="produto-fotos-preview"></div>
+
+                    <div class="produto-fotos-rodape">
+                        <small id="produtoFotosContador">0 fotos</small>
+                        <small>A foto marcada como principal será usada nos cards da loja.</small>
+                    </div>
+                </div>
+
+                <div class="produto-checks">
+                    <label><input id="produtoDisponivel" type="checkbox" checked><span><b>Produto disponível</b><small>Aparece como disponível para venda.</small></span></label>
+                    <label><input id="produtoDestaque" type="checkbox"><span><b>Destacar na Home</b><small>Usar este aparelho na área principal da loja.</small></span></label>
+                </div>
+                <div id="produtoFormMensagem" class="produto-form-mensagem"></div>
+                <div class="produto-form-acoes">
+                    <button id="btnCancelarProduto" class="btn-secondary" type="button">Cancelar</button>
+                    <button id="btnSalvarProduto" class="btn-primary" type="submit">Salvar produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalPedido" class="pedido-modal" aria-hidden="true">
+        <div class="pedido-modal-overlay" data-fechar-modal></div>
+        <div class="pedido-modal-card">
+            <button id="fecharModalPedido" class="pedido-modal-fechar" type="button">×</button>
+            <div id="modalPedidoConteudo"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="painel.js"></script>
+</body>
+</html>
